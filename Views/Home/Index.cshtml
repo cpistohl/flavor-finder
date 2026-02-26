@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="app-shell">
+    <aside class="sidebar">
+        <div class="search-section">
+            <h2 class="search-heading">Find your flavor</h2>
+            <p class="search-subtext">Discover today's scoop at a Culver's near you</p>
+            <div class="search-input-wrap">
+                <i class="bi bi-search search-icon"></i>
+                <input type="text" class="search-input" id="location_search" placeholder="City, state, or zip..." autocomplete="off" />
+            </div>
+            <div id="suggestions" class="suggestions-list"></div>
+        </div>
+        <div class="cards-section">
+            <div id="flavorCards"></div>
+        </div>
+    </aside>
+    <section class="map-section">
+        <div id="map"></div>
+    </section>
+</div>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flavor Finder</title>
+
+    <link rel="icon" type="image/svg+xml" href="~/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+        integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
+        asp-fallback-test-class="container" asp-fallback-test-property="width" asp-fallback-test-value="100%" />
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+        integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"
+        asp-fallback-href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" asp-fallback-test-class="bi"
+        asp-fallback-test-property="font-family" asp-fallback-test-value="bootstrap-icons" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"
+        integrity="sha512-Zcn6bjR/8RZbLEpLIeOwNtzREBAJnUKESxces60Mpoj+2okopSAcSUIUOseddDm0cxnGQzxIR7vJgsLZbdLE3w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" asp-fallback-href="~/lib/leaflet/leaflet.css"
+        asp-fallback-test-class="leaflet-container" asp-fallback-test-property="overflow"
+        asp-fallback-test-value="hidden" />
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    </environment>
+
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/dist/app.min.css" asp-append-version="true" />
+    </environment>
+</head>
+
+<body>
+    <header>
+        <nav class="app-nav">
+            <div class="nav-inner">
+                <a class="app-brand" asp-controller="Home" asp-action="Index">
+                    <span class="brand-icon">
+                        <img src="~/images/brand-cone.svg" alt="" width="20" height="20" />
+                    </span>
+                    <span class="brand-text">Flavor Finder</span>
+                </a>
+                <div class="theme-switch">
+                    <i class="bi bi-sun-fill theme-icon"></i>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="switch-slider"></span>
+                    </label>
+                    <i class="bi bi-moon-fill theme-icon"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+        integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"
+        asp-fallback-src="~/lib/bootstrap/js/bootstrap.bundle.min.js" asp-fallback-test="window.bootstrap"
+        asp-suppress-fallback-integrity="true"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"
+        integrity="sha512-BwHfrr4c9kmRkLw6iXFdzcdWV/PGkVgiIyIWLLlTSXzWQzxuSg4DiQUCpauz/EWjgk5TYQqX/kvn9pG1NpYfqg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" asp-fallback-src="~/lib/leaflet/leaflet.js"
+        asp-fallback-test="window.leaflet" asp-suppress-fallback-integrity="true"></script>
+
+    <environment include="Development">
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/index.js" asp-append-version="true"></script>
+    </environment>
+
+    <environment exclude="Development">
+        <script src="~/dist/app.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

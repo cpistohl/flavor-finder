@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 60 84">
+  <g fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Waffle cone -->
+    <polygon points="18,52 42,52 30,80" fill="rgba(255,255,255,0.15)" stroke="#ffffff" stroke-width="3.5"/>
+    <!-- Cone cross-hatch -->
+    <line x1="22" y1="58" x2="33" y2="73" opacity="0.5"/>
+    <line x1="38" y1="58" x2="27" y2="73" opacity="0.5"/>
+    <line x1="20" y1="58" x2="40" y2="58" opacity="0.4"/>
+    <line x1="23" y1="64" x2="37" y2="64" opacity="0.4"/>
+
+    <!-- Soft-serve body -->
+    <path d="
+      M19,52
+      C19,52 16,48 17,44
+      C18,40 23,40 23,37
+      C23,34 18,33 18,28
+      C18,23 22,21 24,19
+      C26,17 25,14 27,11
+      C29,8 30,6 30,6
+      C30,6 31,8 33,11
+      C35,14 34,17 36,19
+      C38,21 42,23 42,28
+      C42,33 37,34 37,37
+      C37,40 42,40 43,44
+      C44,48 41,52 41,52
+      Z
+    " fill="rgba(255,255,255,0.15)" stroke="#ffffff" stroke-width="3.5"/>
+
+    <!-- Swirl details -->
+    <path d="M21,47 C24,44 36,44 39,47" stroke-width="2.5" opacity="0.5"/>
+    <path d="M20,40 C23,37.5 37,37.5 40,40" stroke-width="2.5" opacity="0.5"/>
+    <path d="M21,33 C24,30.5 36,30.5 39,33" stroke-width="2.5" opacity="0.5"/>
+    <path d="M23,26 C25,24 35,24 37,26" stroke-width="2.5" opacity="0.5"/>
+    <path d="M26,19 C27,17.5 33,17.5 34,19" stroke-width="2.5" opacity="0.5"/>
+
+    <!-- Tip curl -->
+    <path d="M30,6 C31,4 33,5 32,8" stroke-width="3" fill="none"/>
+  </g>
+</svg>
