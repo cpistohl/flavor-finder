@@ -1,0 +1,11 @@
+bin/
+obj/
+.git/
+.github/
+.config/
+.vscode/
+.claude/
+*.md
+.DS_Store
+.dockerignore
+Dockerfile
