@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace FlavorFinder.Controllers;
 
 [Route("api/culvers")]
+[EnableRateLimiting("api")]
 public class CulversApiController(IHttpClientFactory httpClientFactory, ILogger<CulversApiController> logger) : Controller
 {
     [HttpGet("locations")]
@@ -49,6 +51,8 @@ public class CulversApiController(IHttpClientFactory httpClientFactory, ILogger<
     {
         if (string.IsNullOrWhiteSpace(query))
             return BadRequest("Query is required.");
+        if (query.Length > 200)
+            return BadRequest("Query is too long.");
         if (latitude < -90 || latitude > 90)
             return BadRequest("Latitude must be between -90 and 90.");
         if (longitude < -180 || longitude > 180)

@@ -705,7 +705,7 @@ body {
         order: 2;
         border-right: none;
         border-top: 1px solid var(--border-subtle);
-        max-height: 45vh;
+        max-height: 55vh;
     }
 
     .map-section {
@@ -728,24 +728,11 @@ body {
     }
 
     .cards-section {
-        padding: 0.5rem 1rem 1rem;
+        padding: 0.5rem 1rem 2rem;
     }
 }
 
 @media (max-width: 576px) {
-    .flavor-card {
-        grid-template-columns: 1fr;
-    }
-
-    .flavor-card .card-img-container {
-        justify-content: flex-start;
-        padding: 0.75rem 1rem 0;
-    }
-
-    .flavor-card .card-body {
-        padding: 0.5rem 1rem 0.75rem;
-    }
-
     .flavor-card .card-title {
         white-space: normal;
     }

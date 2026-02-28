@@ -62,5 +62,5 @@ jobs:
         env:
           IMAGE_TAG: ${{ needs.build-and-push.outputs.image_tag }}
         run: |
-          az containerapp update -n flavor-finder -g rg-releases \
+          az containerapp update -n flavor-finder -g rg-apps \
             --image "$IMAGE_TAG"

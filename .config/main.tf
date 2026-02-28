@@ -19,10 +19,10 @@ variable "subscription_id" {
   type        = string
 }
 
-variable "resource_group_name" {
-  description = "Name of the existing resource group"
+variable "location" {
+  description = "Azure region for all resources"
   type        = string
-  default     = "rg-releases"
+  default     = "centralus"
 }
 
 variable "container_image" {
@@ -43,19 +43,34 @@ variable "ghcr_password" {
   sensitive   = true
 }
 
-data "azurerm_resource_group" "main" {
-  name = var.resource_group_name
+# --- Shared infrastructure ---
+
+resource "azurerm_resource_group" "main" {
+  name     = "rg-apps"
+  location = var.location
 }
 
-data "azurerm_container_app_environment" "main" {
-  name                = "cae-releases"
-  resource_group_name = data.azurerm_resource_group.main.name
+resource "azurerm_log_analytics_workspace" "main" {
+  name                = "log-apps"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
 }
+
+resource "azurerm_container_app_environment" "main" {
+  name                       = "cae-apps"
+  location                   = azurerm_resource_group.main.location
+  resource_group_name        = azurerm_resource_group.main.name
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.main.id
+}
+
+# --- Container Apps ---
 
 resource "azurerm_container_app" "flavor_finder" {
   name                         = "flavor-finder"
-  container_app_environment_id = data.azurerm_container_app_environment.main.id
-  resource_group_name          = data.azurerm_resource_group.main.name
+  container_app_environment_id = azurerm_container_app_environment.main.id
+  resource_group_name          = azurerm_resource_group.main.name
   revision_mode                = "Single"
 
   secret {

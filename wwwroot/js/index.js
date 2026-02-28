@@ -58,9 +58,9 @@
     function createIceCreamIcon() {
         return L.icon({
             iconUrl: '/images/marker-cone.svg',
-            iconSize: [30, 42],
-            iconAnchor: [15, 42],
-            popupAnchor: [0, -38]
+            iconSize: [22, 32],
+            iconAnchor: [11, 32],
+            popupAnchor: [0, -28]
         });
     }
 
@@ -157,7 +157,7 @@
 
         locations.forEach((loc, i) => {
             const m = loc?.metadata ?? {};
-            const locationTitle = loc?.description || loc?.name || "Culver's location";
+            const locationTitle = (loc?.description || loc?.name || "Culver's location").replace(/,\s*[A-Z]{2}\s*-/, ' -');
             const flavorName = m.flavorOfDayName || 'Flavor unavailable';
             const flavorDescription = m.flavorOfTheDayDescription || m.flavorOfDayDescription || "Check the Culver's menu for the latest flavor details.";
             const imageSlug = m.flavorOfDaySlug;
@@ -170,7 +170,7 @@
             const imgContainer = document.createElement('div');
             imgContainer.className = 'col card-img-container';
 
-            if (imageSlug) {
+            if (imageSlug && /^[a-zA-Z0-9.\-]+$/.test(imageSlug)) {
                 const img = document.createElement('img');
                 img.src = `https://cdn.culvers.com/menu-item-detail/${imageSlug}?format=auto`;
                 img.alt = flavorName;
@@ -189,23 +189,16 @@
             const body = document.createElement('div');
             body.className = 'col card-body';
 
+            const flavorP = document.createElement('p');
+            flavorP.className = 'flavor-name';
+            flavorP.textContent = flavorName;
+
             const title = document.createElement('h5');
             title.className = 'card-title';
             title.textContent = locationTitle;
 
-            const flavorP = document.createElement('p');
-            flavorP.className = 'flavor-name';
-            flavorP.textContent = 'Flavor of the Day:';
-            flavorP.appendChild(document.createElement('br'));
-            flavorP.appendChild(document.createTextNode(flavorName));
-
-            const descP = document.createElement('p');
-            descP.className = 'card-text';
-            descP.textContent = flavorDescription;
-
             body.appendChild(title);
             body.appendChild(flavorP);
-            body.appendChild(descP);
 
             card.appendChild(imgContainer);
             card.appendChild(body);
@@ -298,9 +291,11 @@
         const markerDataArray = parseMarkersFromLocations(locations);
 
         markerDataArray.forEach(markerData => {
+            const popupContent = document.createElement('span');
+            popupContent.textContent = markerData.description;
             const m = L.marker([markerData.lat, markerData.lon], { icon: iceCreamIcon })
                 .addTo(flavorFinder.markerLayer)
-                .bindPopup(markerData.description);
+                .bindPopup(popupContent);
             flavorFinder.locationMarkers.push(m);
         });
 
